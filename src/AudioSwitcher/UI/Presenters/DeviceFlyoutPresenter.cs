@@ -73,7 +73,7 @@ namespace AudioSwitcher.UI.Presenters
 
         private AudioDeviceViewModel[] GetDevices(AudioDeviceKind kind)
         {
-            return _viewModelManager.ViewModels.Where(v => v.Device.Kind == kind && v.FriendlyName != "NVIDIA RTX Voice")
+            return _viewModelManager.ViewModels.Where(v => v.Device.Kind == kind && (!Settings.Default.DeviceBlacklist.Contains(v.FriendlyName) && !Settings.Default.DeviceBlacklist.Contains(v.Description)))
                                                .OrderBy(v => v.FriendlyName)
                                                .ToArray();
         }
