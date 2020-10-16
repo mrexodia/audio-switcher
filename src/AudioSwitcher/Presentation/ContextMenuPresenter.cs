@@ -20,6 +20,8 @@ namespace AudioSwitcher.Presentation
             _application = application;
             _contextMenu = CreateContextMenu();
             _contextMenu.Closed += (sender, e) => OnClosed(EventArgs.Empty);
+            // TODO: this is a hackfix and only works if the main screen is on the Left
+            _contextMenu.DefaultDropDownDirection = ToolStripDropDownDirection.Right;
         }
 
         public AudioContextMenuStrip ContextMenu => _contextMenu;
